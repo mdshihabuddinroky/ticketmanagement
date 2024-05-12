@@ -1,3 +1,5 @@
+// authController.js
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -33,7 +35,7 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user.UserID }, JWT_SECRET);
-        res.status(200).json({ token, userId: user.UserID });
+        res.status(200).json({ token, userId: user.UserID }); // Return userId along with the token
       }
     );
   } catch (error) {
@@ -56,7 +58,8 @@ router.post('/register', async (req, res) => {
           console.error(error);
           return res.status(500).json({ message: 'Internal Server Error' });
         }
-        res.status(201).json({ message: 'User registered successfully' });
+        const userId = results.insertId; // Get the ID of the inserted user
+        res.status(201).json({ message: 'User registered successfully', userId }); // Return userId in response
       }
     );
   } catch (error) {
