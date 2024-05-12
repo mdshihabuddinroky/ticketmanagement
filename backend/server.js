@@ -3,7 +3,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const routes = require('./routes'); // Import your main routes
+const routes = require('./routes/index');
+const dashboardRoutes = require('./routes/dashboard');
+const ticketRoutes = require('./routes/tickets'); // Import ticket routes
 const cors = require('cors');
 
 const app = express();
@@ -15,9 +17,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api', routes); // Use your main routes
-// Add the following line to use dashboard routes
-app.use('/api', require('./routes'));
+app.use('/api', routes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/tickets', ticketRoutes); // Use ticket routes
 
 // Start server
 app.listen(PORT, () => {

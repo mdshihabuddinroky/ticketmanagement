@@ -51,11 +51,11 @@ const dashboardController = {
 
   purchaseTicket: async (req, res) => {
     const { userId, seatIds } = req.body;
-
+  
     try {
       const totalPriceResult = await new Promise((resolve, reject) => {
         connection.query(
-          `SELECT SUM(BusRoute.SeatPrice) AS TotalPrice
+          `SELECT IFNULL(SUM(BusRoute.SeatPrice), 0) AS TotalPrice
            FROM Seat
            INNER JOIN BusRoute ON Seat.BusRouteID = BusRoute.BusRouteID
            WHERE Seat.SeatID IN (?)`,
@@ -69,7 +69,7 @@ const dashboardController = {
           }
         );
       });
-
+  
       const ticketResult = await new Promise((resolve, reject) => {
         connection.query(
           `INSERT INTO Ticket (UserID, BusRouteID, TicketDate, Price)
@@ -84,7 +84,7 @@ const dashboardController = {
           }
         );
       });
-
+  
       await new Promise((resolve, reject) => {
         const values = seatIds.map(seatId => `(${ticketResult}, ${seatId})`).join(',');
         connection.query(
@@ -99,7 +99,7 @@ const dashboardController = {
           }
         );
       });
-
+  
       await new Promise((resolve, reject) => {
         connection.query(
           `UPDATE Seat
@@ -115,13 +115,13 @@ const dashboardController = {
           }
         );
       });
-
+  
       res.json({ message: 'Ticket purchased successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
-  }
+  }  
 };
 
 module.exports = dashboardController;
