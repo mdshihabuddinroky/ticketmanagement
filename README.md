@@ -1,6 +1,5 @@
 
 
-```
 # Ticket Management System
 
 This project is a Ticket Management System designed to facilitate the online booking of bus tickets. It provides users with a convenient platform to browse available routes, select buses, choose seats, purchase tickets, and view their booked tickets.
@@ -109,4 +108,3 @@ This project is a Ticket Management System designed to facilitate the online boo
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
-```
