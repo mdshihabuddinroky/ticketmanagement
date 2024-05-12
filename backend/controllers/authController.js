@@ -1,5 +1,3 @@
-// controllers/authController.js
-
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -37,7 +35,7 @@ router.post('/login', (req, res) => {
           return res.status(401).json({ message: 'Incorrect password' });
         }
         const token = jwt.sign({ userId: user.UserID }, JWT_SECRET);
-        res.status(200).json({ token });
+        res.status(200).json({ token, userId: user.UserID });
       });
     }
   );
