@@ -128,7 +128,8 @@ This project is a Ticket Management System designed to facilitate the online boo
 8. Open your browser and visit: `http://localhost:3000`
 
 ## Contributors
-- [Your Name](https://github.com/mdshihabuddinroky)
+- [Md. SHihab Uddin Roky](https://github.com/mdshihabuddinroky)
+- [Md. SHihab Uddin Roky](https://github.com/nooraalam1)
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
